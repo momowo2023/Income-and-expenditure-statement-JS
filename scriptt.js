@@ -1,7 +1,6 @@
 // THE ACCOUNT OBJECT SHOULD HAVE THE FOLLWOING PROPERTIES:
 
-// expenses: an array that should hold all of your expenses, can be empty from start
-// income: an array that should hold all of your income, can be empty from start
+
 // addExpenses: a function that vill add an expense to the expenses array
 // addIncome: a function that vill add an income to the income array
 // listAllExpenses: a function that should list all the expenses in the expenses array
@@ -14,21 +13,32 @@
 //2. create the manu and different choice for the user ok
 //3. take the input from the user, store the input in a variable ok
 //4. use the stored to show the menu choice ok
+//5. expense, create an empty array that hold all of expenses ok
+//6. incone,  create an empty array that hold all of income ok
+//7. function listAllExpenses 
+//8. display the list of expenses
+//9. finction income
+//10. doing the operate of summary 
 
-1
+
 //object 
 const account = { 
    name: "Mowei", //1. doing the name property as the astring
-   expenses:[],
-   income:[],
+   expenses:[],     // 5. an empty array that hold all of expenses
+   income:[],       // 6. an empty array that hold all of income
    addExpenses: function (item, amount){
-    this.expenses.push(item, amount); //use push to add a array
+    this.expenses.push({item, amount}); //use push to add a array
    },
    addIncome: function (item, amount){
-    this.income.push(item, amount); 
+    this.income.push({item, amount}); 
    },
-   ListAllExpenses:[],
+   listAllExpenses: function(allExpenses){
+    for (let i = 0; i < this.expenses.length; i++);
+    const expense = this.expenses[i];
+    console.log(`${expense.item}：${expense.amount}`);
+},
    getSummary:[],
+
 };
 
 
@@ -38,26 +48,24 @@ const account = {
 function menu(){ 
     const choice = parseFloat( //use parseFloat to make the input as a number instead of string
         prompt(
-         "Please select from the menu:\n1. Add Income\n2. Add Expenses\n3. List of all Expenses\n4. Check out the balance\n5. I am good "
+         "Please select from the menu:\n1. Add Expenses\n2. Add Income \n3. List of all Expenses\n4. Check out the balance\n5. I am good "
         )
     );//2. create the manu and different choice for the user
 
     switch (choice){ // use the stored to show the menu choice
-        case 1:
-            const incomeItem = prompt("Enter the item of income");
-            const income = parseFloat(prompt("Enter income amount:"));
-            // make income to be added up；
+        case 1: 
+            const expensesItem = prompt("Enter the item of expenses");
+            const expensesAmount = parseFloat(prompt("Enter expenses amount:"));
             menu();
             break;
-        case 2: 
-            const expensesItem = prompt("Enter the item of expenses");
-            const expenses = parseFloat(prompt("Enter expenses amount:"));
-            // make it to be added up；
+        case 2:
+            const incomeItem = prompt("Enter the item of income");
+            const incomeAmount = parseFloat(prompt("Enter income amount:"));
             menu();
             break;
         case 3: 
-            // to be solved
-            menu();
+        account.listAllExpenses();
+        menu();
             break;
         case 4: 
             // to be solved
