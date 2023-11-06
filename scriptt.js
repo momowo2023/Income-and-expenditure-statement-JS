@@ -32,13 +32,27 @@ const account = {
    addIncome: function (item, amount){
     this.income.push({item, amount}); 
    },
-   listAllExpenses: function(allExpenses){
-    for (let i = 0; i < this.expenses.length; i++);
-    const expense = this.expenses[i];
-    console.log(`${expense.item}：${expense.amount}`);
-},
-   getSummary:[],
+   listAllExpenses: function(){   //7. function listAllExpenses 
+    for (let i = 0; i < this.expenses.length; i++) {
+        const expense = this.expenses[i];
+        console.log(`${expense.item}: ${expense.amount}`);  
+     }
+   },  
+   getSummary: function (){
+    let totalIncome = 0;
+    let totalExpenses = 0;
 
+    for (let i = 0; i < this.income.length; i++){ //9. finction income 
+        totalIncome += this.income[i].amount;       // +=：calculate the total income within a loop
+    }           
+
+    for (let i = 0; i < this.expenses.length; i++){
+        totalExpenses += this.expenses[i].amount;
+    }
+    
+    const netValue = totalIncome - totalExpenses;  //10. doing the operate of summary
+     return netValue;
+    }
 };
 
 
@@ -69,12 +83,12 @@ function menu(){
             const incomeAmount = parseFloat(prompt("Enter income amount:"));
             menu();
             break;
-        case 3: 
-        account.listAllExpenses();
+        case 3:    
+            const listAllExpenses = alert(account.listAllExpenses());  //8. display the list of expenses
         menu();
             break;
         case 4: 
-            // to be solved
+            const netValue = alert(account.getSummary());
             menu();
             break;
         case 5: 
