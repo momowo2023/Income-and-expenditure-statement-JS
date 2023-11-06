@@ -46,9 +46,15 @@ const account = {
 
 //function
 function menu(){ 
+    const choiceOne = "1. Add Expenses";
+    const choiceTwo = "2. Add Income";
+    const choiceThree = "3. List of all Expenses";
+    const choiceFour = "4. Check out the balance";
+    const choiceFive = "5. I am good ";
     const choice = parseFloat( //use parseFloat to make the input as a number instead of string
+    
         prompt(
-         "Please select from the menu:\n1. Add Expenses\n2. Add Income \n3. List of all Expenses\n4. Check out the balance\n5. I am good "
+         `Please select from the menu:\n${choiceOne} \n${choiceTwo} \n${choiceThree}\n${choiceFour}\n${choiceFive}`
         )
     );//2. create the manu and different choice for the user
 
