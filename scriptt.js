@@ -27,31 +27,33 @@ const account = {
    expenses:[],     // 5. an empty array that hold all of expenses
    income:[],       // 6. an empty array that hold all of income
    addExpenses: function (item, amount){
-    this.expenses.push({item, amount}); //use push to add a array
+    const Expenses = this.expenses.push({item, amount}); //use push to add a array
    },
    addIncome: function (item, amount){
     this.income.push({item, amount}); 
    },
    listAllExpenses: function(){   //7. function listAllExpenses 
+    const expenseList = [];
     for (let i = 0; i < this.expenses.length; i++) {
         const expense = this.expenses[i];
-        console.log(`${expense.item}: ${expense.amount}`);  
-     }
+        expenseList.push(`${expense.item}: ${expense.amount}`);  
+    }
+    return expenseList;
    },  
    getSummary: function (){
     let totalIncome = 0;
     let totalExpenses = 0;
 
-    for (let i = 0; i < this.income.length; i++){ //9. finction income 
-        totalIncome += this.income[i].amount;       // +=：calculate the total income within a loop
-    }           
+        for (let i = 0; i < this.income.length; i++){ //9. finction income 
+            totalIncome += this.income[i].amount;       // +=：calculate the total income within a loop
+        }           
 
-    for (let i = 0; i < this.expenses.length; i++){
-        totalExpenses += this.expenses[i].amount;
-    }
-    
-    const netValue = totalIncome - totalExpenses;  //10. doing the operate of summary
-     return netValue;
+        for (let i = 0; i < this.expenses.length; i++){
+            totalExpenses += this.expenses[i].amount;
+        }
+        
+        const netValue = totalIncome - totalExpenses;  //10. doing the operate of summary
+        return netValue;
     }
 };
 
@@ -72,7 +74,7 @@ function menu(){
         )
     );//2. create the manu and different choice for the user
 
-    switch (choice){ // use the stored to show the menu choice
+    switch (choice){  //4. use the stored to show the menu choice
         case 1: 
             const expensesItem = prompt("Enter the item of expenses");
             const expensesAmount = parseFloat(prompt("Enter expenses amount:"));
@@ -84,11 +86,13 @@ function menu(){
             menu();
             break;
         case 3:    
-            const listAllExpenses = alert(account.listAllExpenses());  //8. display the list of expenses
-        menu();
+            const expenseList = account.listAllExpenses();  //8. display the list of expenses
+            alert(`expense List: ${expenseList}`);
+            menu();
             break;
         case 4: 
-            const netValue = alert(account.getSummary());
+            const balance = account.getSummary();
+            alert(`Net Balance: ${balance}`);
             menu();
             break;
         case 5: 
@@ -100,6 +104,7 @@ function menu(){
             break;   
         }
     console.log(`let's check number ${choice}`);    //3. take the input from the user, store the input in a variable, and fix null
-}                                                   //4. use the stored to show the menu choice
-
+}                                                  
 menu();
+
+console.log(account.expenses);
