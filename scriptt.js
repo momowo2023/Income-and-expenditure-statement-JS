@@ -26,20 +26,24 @@ const account = {
    name: "Mowei", //1. doing the name property as the astring
    expenses:[],     // 5. an empty array that hold all of expenses
    income:[],       // 6. an empty array that hold all of income
-   addExpenses: function (item, amount){
+   addExpenses: function (){
     const Expenses = this.expenses.push({item, amount}); //use push to add a array
    },
    addIncome: function (item, amount){
     this.income.push({item, amount}); 
    },
    listAllExpenses: function(){   //7. function listAllExpenses 
-    const expenseList = [];
-    for (let i = 0; i < this.expenses.length; i++) {
-        const expense = this.expenses[i];
-        expenseList.push(`${expense.item}: ${expense.amount}`);  
-    }
-    return expenseList;
-   },  
+        let message = ""  ;
+        this.expenses.forEach(function(expense) {
+            message +=
+                "Expense item: " + expense.expensesItem +
+                "Expense amount: " + expense.expensesAmount +
+                "\n";
+            ;    
+        })
+        alert(message);
+        menu();
+    },
    getSummary: function (){
     let totalIncome = 0;
     let totalExpenses = 0;
@@ -86,9 +90,7 @@ function menu(){
             menu();
             break;
         case 3:    
-            const expenseList = account.listAllExpenses();  //8. display the list of expenses
-            alert(`expense List: ${expenseList}`);
-            menu();
+            account.listAllExpenses();  //8. call the function to display the list of expenses
             break;
         case 4: 
             const balance = account.getSummary();
