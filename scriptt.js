@@ -29,13 +29,23 @@ const account = {
    addExpenses: function (){
         const expensesItem = prompt("Enter the item of expenses");
         const expensesAmount = parseFloat(prompt("Enter expenses amount:"));   
-        this.expenses.push({expensesItem, expensesAmount}); //use push to add a array
+        if (isNaN(expensesAmount)) {
+            alert("Please fill in vaild value");  //validation to avoid invalid content
+            this.addExpenses();
+            } else{
+                this.expenses.push({expensesItem, expensesAmount}); //use push to add a array
+            }        
         menu();
     },
    addIncome: function (){
         const incomeItem = prompt("Enter the item of income");
         const incomeAmount = parseFloat(prompt("Enter income amount:"));
-        this.income.push({incomeItem,incomeAmount}); 
+        if (isNaN(incomeAmount)) {
+            alert("Please fill in vaild value");  //validation to avoid invalid content
+            this.addIncome();
+            } else{
+                this.income.push({incomeItem,incomeAmount}); 
+            }
         menu();    
     },
    listAllExpenses: function(){   //7. function listAllExpenses 
